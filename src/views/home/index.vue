@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <el-alert
+      title="2026 Qoder CLI"
+      type="info"
+      center
+      :closable="false"
+      show-icon>
+    </el-alert>
     <div class="address-layout">
       <el-row :gutter="20">
         <el-col :span="6">
