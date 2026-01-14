@@ -1,0 +1,40 @@
+name: Deploy Without Registry
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'src/**'
+      - 'config/**'
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'package.json'
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger server rebuild and deploy
+        run: |
+          echo "📤 Triggering server to pull code and rebuild..."
+          curl -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{"token": "${{ secrets.DEPLOY_TOKEN }}"}'
+      
+      - name: Deployment information
+        run: |
+          echo "✅ 部署请求已发送到服务器"
+          echo "⏳ 服务器将执行以下步骤："
+          echo "   1. git pull 拉取最新代码"
+          echo "   2. docker build 构建镜像"
+          echo "   3. docker run 启动新容器"
+          echo ""
+          echo "📝 Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo "⏰ Time: ${{ github.event.head_commit.timestamp }}"
+          echo ""
+          echo "💡 提示：登录服务器查看部署日志"
+          echo "   docker logs webhook -f"
