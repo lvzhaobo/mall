@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-alert
-      title="20260114 Qoder CLI"
+      title="20260114 20:28:00 Qoder CLI"
       type="info"
       center
       :closable="false"
