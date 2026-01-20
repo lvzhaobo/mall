@@ -236,6 +236,12 @@ export const asyncRouterMap = [
         meta: {title: '优惠券列表', icon: 'sms-coupon'}
       },
       {
+        path: 'springFestival',
+        name: 'springFestival',
+        component: () => import('@/views/sms/springFestival/index'),
+        meta: {title: '春节活动', icon: 'sms-coupon'}
+      },
+      {
         path: 'addCoupon',
         name: 'addCoupon',
         component: () => import('@/views/sms/coupon/add'),
